@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faysal Al Mahmud | Intelligence Engineered</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Lenis Smooth Scroll & GSAP -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+  <!-- Elite Preloader Screen -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-label" id="preloader-label">INITIALIZING COGNITIVE MODELS</div>
+      <div class="preloader-counter" id="progress-counter">00%</div>
+      <div class="preloader-bar-wrap">
+        <div class="preloader-bar" id="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
+
+  <!-- Interactive Canvas Particle Field -->
+  <canvas id="hero-canvas"></canvas>
+  <div class="noise-overlay"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo gsap-fade">faysal<span>.ai</span></div>
+      <div class="nav-links gsap-fade">
+        <a href="#expertise" class="hover-target magnetic">Capabilities</a>
+        <a href="#work" class="hover-target magnetic">Machine Learning Models</a>
+        <a href="#contact" class="hover-target magnetic">Initialize Contact</a>
+        <a href="/Faysal Al Mahmud _ Resume.pdf" target="_blank" class="hover-target magnetic nav-resume-btn">Resume</a>
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="theme-toggle-btn hover-target magnetic" aria-label="Toggle Theme">
+          <div class="icon-wrapper">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </div>
+        </button>
+      </div>
+
+      <!-- Mobile controls: always visible on small screens -->
+      <div class="mobile-nav-controls">
+        <button id="theme-toggle-mobile" class="theme-toggle-btn hover-target" aria-label="Toggle Theme">
+          <div class="icon-wrapper">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </div>
+        </button>
+        <button id="hamburger" class="hamburger-btn" aria-label="Open Menu" aria-expanded="false">
+          <span class="ham-bar"></span>
+          <span class="ham-bar"></span>
+          <span class="ham-bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu-nav">
+      <a href="#expertise" class="mobile-nav-link">Capabilities</a>
+      <a href="#work" class="mobile-nav-link">Machine Learning Models</a>
+      <a href="#contact" class="mobile-nav-link">Initialize Contact</a>
+      <a href="/Faysal Al Mahmud _ Resume.pdf" target="_blank" class="mobile-nav-link">Resume</a>
+    </nav>
+  </div>
+
+  <main id="smooth-wrapper">
+    <div id="smooth-content">
+      <!-- Hero Section -->
+      <section class="hero" id="home">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="badge gsap-hero-item">Neural Architect & Data Scientist</div>
+            <h1 class="hero-title" id="split-title">
+              Architecting Intelligence
+            </h1>
+            <p class="hero-subtitle gsap-hero-item">
+              I am <span style="color: var(--text-primary); font-weight: 500;">Faysal Al Mahmud</span>. I construct
+              scalable machine learning infrastructures, engineer deep neural networks, and synthesize raw data into
+              cognitive systems.
+            </p>
+            <div class="hero-actions gsap-hero-item">
+              <a href="#work" class="btn primary-btn hover-target magnetic">
+                <span class="btn-text">Explore Systems</span>
+                <span class="btn-icon">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                    <path
+                      d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual gsap-hero-item">
+            <div class="modern-profile-wrapper js-tilt hover-target">
+              <div class="spotlight"></div>
+
+              <!-- Floating Abstract Rings / Visual FX -->
+              <div class="hologram-ring"></div>
+              <div class="hologram-ring ring-2"></div>
+
+              <!-- Floating Tech Badge -->
+              <div class="floating-badge badge-tr">
+                <span class="pulse-dot"></span> SYS.READY
+              </div>
+
+              <div class="modern-profile-inner">
+                <!-- The Image -->
+                <img src="/profile.jpg" alt="Faysal Al Mahmud - Data Scientist" class="modern-profile-image">
+
+                <!-- Cyberpunk Scanner Line -->
+                <div class="scanner-line"></div>
+                <!-- Overlay gradient -->
+                <div class="modern-profile-overlay"></div>
+              </div>
+
+              <!-- Floating Data Badge -->
+              <div class="floating-badge badge-bl glass-badge">
+                <div class="data-value">99.9%</div>
+                <div class="data-label">MODEL ACCURACY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Infinite Marquee -->
+      <section class="marquee-section">
+        <div class="marquee-container">
+          <div class="marquee-content">
+            <span>DATA SCIENTIST • MACHINE LEARNING • PREDICTIVE MODELING • NLP • COMPUTER VISION • DEEP LEARNING •
+            </span>
+            <span>DATA SCIENTIST • MACHINE LEARNING • PREDICTIVE MODELING • NLP • COMPUTER VISION • DEEP LEARNING •
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bento Spotlight Grid + 3D Tilt -->
+      <section class="expertise" id="expertise">
+        <div class="section-heading">
+          <h2 class="gsap-heading line-clip">Cognitive Capabilities</h2>
+        </div>
+
+        <div class="bento-grid" id="cards-container">
+          <div class="bento-item span-2 spotlight-card js-tilt">
+            <div class="spotlight"></div>
+            <div class="bento-inner">
+              <div class="bento-content">
+                <h3>Deep Learning Architecture</h3>
+                <p>Designing sophisticated neural networks (CNNs, RNNs, Transformers) utilizing PyTorch and TensorFlow
+                  for complex data arrays.</p>
+              </div>
+              <div class="abstract-network-anim"></div>
+            </div>
+          </div>
+
+          <div class="bento-item spotlight-card js-tilt">
+            <div class="spotlight"></div>
+            <div class="bento-inner bento-gradient-1">
+              <div class="bento-content">
+                <h3>Predictive <br>Analytics</h3>
+                <p>Statistical ensemble modeling to forecast complex trends with extreme precision.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-item spotlight-card js-tilt">
+            <div class="spotlight"></div>
+            <div class="bento-inner bento-gradient-2">
+              <div class="bento-content">
+                <h3>NLP <br>Systems</h3>
+                <p>Large Language Model fine-tuning, semantic vectors, and human language understanding.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-item span-2 spotlight-card layout-row js-tilt">
+            <div class="spotlight"></div>
+            <div class="bento-inner">
+              <div class="bento-content">
+                <h3>Core Tech Stack</h3>
+                <div class="tech-tags">
+                  <span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span
+                    class="tag">PyTorch</span>
+                  <span class="tag">TensorFlow</span><span class="tag">Scikit-Learn</span><span
+                    class="tag">AWS</span><span class="tag">Docker</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Super Duper World-Class Horizontal Experience -->
+      <section class="mega-exp-section" id="experience">
+        <div class="mega-exp-track">
+           
+           <div class="mega-panel title-panel">
+             <div class="badge fade-up-text">Professional Trajectory</div>
+             <h2 class="gsap-heading line-clip" style="font-size:clamp(4rem, 8vw, 8rem); margin-bottom:2rem; font-family: var(--font-display);">ORBIT</h2>
+             <p class="exp-abstract-text fade-up-text">Deploying sophisticated machine learning models, engineering neural architectures, and synthesizing complex data infrastructures.</p>
+             <div class="swipe-indicator fade-up-text">
+                <span class="pulse-dot"></span>
+                <span>HORIZONTAL SCROLL DOMAIN</span>
+             </div>
+           </div>
+
+           <!-- Panel 1 -->
+           <div class="mega-panel card-panel">
+             <div class="mega-card js-tilt p-gradient-1 hover-target">
+                <div class="mega-year">2025 - Present</div>
+                <h3 class="mega-role">Technical Interviewer</h3>
+                <h4 class="mega-company">MasterCourse · Part-time</h4>
+                <p class="mega-desc">Conducted high-volume, performance-based assessments to evaluate candidates' practical Data Science skills and ensure program technical standards were rigorously met.</p>
+                <div class="tech-tags"><span class="tag">Data Science</span><span class="tag">Technical Evaluation</span></div>
+                
+                <div class="mega-visual-module">
+                   <div class="css-data-mesh mesh-1"></div>
+                   <div class="mesh-overlay-text">DS_ASSESSMENT_ACTIVE</div>
+                </div>
+             </div>
+           </div>
+
+           <!-- Panel 2 -->
+           <div class="mega-panel card-panel">
+             <div class="mega-card js-tilt p-gradient-2 hover-target">
+                <div class="mega-year">Jul - Oct 2025</div>
+                <h3 class="mega-role">Trainee Data Scientist</h3>
+                <h4 class="mega-company">MasterCourse · Internship</h4>
+                <p class="mega-desc">Completed intensive Data Science training. Developed predictive models and executed extensive exploratory data analysis to extract actionable insights from core datasets.</p>
+                <div class="tech-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span></div>
+                
+                <div class="mega-visual-module">
+                   <div class="css-data-mesh mesh-2"></div>
+                   <div class="mesh-overlay-text">DS_TRAINING_NODE</div>
+                </div>
+             </div>
+           </div>
+
+           <!-- Panel 3 -->
+           <div class="mega-panel card-panel">
+             <div class="mega-card js-tilt p-gradient-3 hover-target">
+                <div class="mega-year">2023 - Present</div>
+                <h3 class="mega-role">Developer Team Lead</h3>
+                <h4 class="mega-company">Kacchi Bhai</h4>
+                <p class="mega-desc">Responsible for leading a team of talented developers in creating and maintaining web solutions. Ensured efficient operations by leveraging the latest technologies to meet customer needs.</p>
+                <div class="tech-tags"><span class="tag">Leadership</span><span class="tag">Web Architecture</span></div>
+                
+                <div class="mega-visual-module">
+                   <div class="css-data-mesh mesh-3"></div>
+                   <div class="mesh-overlay-text">WEB_OPS_COMMAND</div>
+                </div>
+             </div>
+           </div>
+
+        </div>
+      </section>
+      <!-- Dynamic Parallax Projects -->
+      <section class="work" id="work">
+        <div class="section-heading">
+          <h2 class="gsap-heading line-clip">Deployed Models</h2>
+        </div>
+
+        <div class="project-list">
+          <!-- Project 1 -->
+          <div class="project-item">
+            <div class="project-info js-info">
+              <div class="project-meta text-split">NLP • Multi-label Classification</div>
+              <h3 class="project-title line-clip">
+                <a href="https://github.com/faysalalmahmud/ai-patent-cpc-code-classifier" target="_blank"
+                  class="hover-target">
+                  AI Patent CPC Code Classifier
+                </a>
+              </h3>
+              <p class="project-desc">Automated multi-label classification of AI-related patents into Cooperative Patent
+                Classification (CPC) codes utilizing advanced deep learning architectures.</p>
+              <div class="project-link-wrapper">
+                <a href="https://github.com/faysalalmahmud/ai-patent-cpc-code-classifier" target="_blank"
+                  class="project-btn magnetic hover-target">
+                  <span class="btn-text">REPOSITORY</span>
+                  <span class="btn-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="project-image-container prlx-container hover-target">
+              <div class="project-image prlx-image" style="background-image: url('/patent_nlp_1774774158601.png');">
+              </div>
+              <div class="image-overlay"></div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-item">
+            <div class="project-info js-info">
+              <div class="project-meta text-split">Computer Vision • Object Recognition</div>
+              <h3 class="project-title line-clip">
+                <a href="https://github.com/faysalalmahmud/surgical-equipment-recognizer" target="_blank"
+                  class="hover-target">
+                  Surgical Equipment Recognizer
+                </a>
+              </h3>
+              <p class="project-desc">A highly sophisticated computer vision engine developed to track, identify, and
+                securely classify 20 distinct types of surgical tools from live surgical fields.</p>
+              <div class="project-link-wrapper">
+                <a href="https://github.com/faysalalmahmud/surgical-equipment-recognizer" target="_blank"
+                  class="project-btn magnetic hover-target">
+                  <span class="btn-text">REPOSITORY</span>
+                  <span class="btn-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="project-image-container prlx-container hover-target">
+              <div class="project-image prlx-image" style="background-image: url('/surgical_cv_1774774176810.png');">
+              </div>
+              <div class="image-overlay"></div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-item">
+            <div class="project-info js-info">
+              <div class="project-meta text-split">Data Science • Analytics</div>
+              <h3 class="project-title line-clip">
+                <a href="https://github.com/faysalalmahmud/bd-healthcare-professional-analysis" target="_blank"
+                  class="hover-target" style="font-size: clamp(2.5rem, 4vw, 4.5rem);">
+                  Analysis of Healthcare Professional in BD
+                </a>
+              </h3>
+              <p class="project-desc">A massive data science pipeline mapping out geographical distributions and
+                statistical demographics of medical professionals across Bangladesh.</p>
+              <div class="project-link-wrapper">
+                <a href="https://github.com/faysalalmahmud/bd-healthcare-professional-analysis" target="_blank"
+                  class="project-btn magnetic hover-target">
+                  <span class="btn-text">REPOSITORY</span>
+                  <span class="btn-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="project-image-container prlx-container hover-target">
+              <div class="project-image prlx-image" style="background-image: url('/bd_analytics_1774774192962.png');">
+              </div>
+              <div class="image-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Global Accolades — Neural Network Section -->
+      <section class="neural-awards" id="awards">
+        <div class="neural-awards-inner">
+          <div class="section-heading">
+            <h2 class="gsap-heading line-clip">Global Accolades</h2>
+            <p class="neural-awards-subtitle">Achievements encoded as synaptic firing events across a global
+              intelligence network.</p>
+          </div>
+
+          <!-- Neural Canvas Background -->
+          <div class="neural-canvas-wrap">
+            <canvas id="awards-canvas"></canvas>
+          </div>
+
+          <!-- Neural Node Grid -->
+          <div class="neural-grid">
+
+            <!-- Input Layer Label -->
+            <div class="neural-layer-label" style="grid-column:1;">INPUT<br>LAYER</div>
+
+            <!-- Hidden Layer Label -->
+            <div class="neural-layer-label" style="grid-column:2;">HIDDEN<br>LAYER</div>
+
+            <!-- Output Layer Label -->
+            <div class="neural-layer-label" style="grid-column:3;">OUTPUT<br>LAYER</div>
+
+            <!-- ── ROW 1 ── -->
+            <!-- Input neuron -->
+            <div class="neural-node node-input gsap-neural-node" data-layer="0" data-index="0"
+              style="grid-column:1;grid-row:2;">
+              <div class="node-core"></div>
+              <div class="node-ring"></div>
+              <div class="node-pulse"></div>
+              <span class="node-label">Competitive Prog.</span>
+            </div>
+
+            <!-- Hidden neuron 1 -->
+            <div class="neural-node node-hidden gsap-neural-node" data-layer="1" data-index="0"
+              style="grid-column:2;grid-row:2;">
+              <div class="node-core"></div>
+              <div class="node-ring"></div>
+              <div class="node-pulse"></div>
+              <span class="node-label">Algorithms</span>
+            </div>
+
+            <!-- Award card 1 (Output) -->
+            <div class="neural-node node-award gsap-neural-node hover-target" data-layer="2" data-index="0"
+              style="grid-column:3;grid-row:2;" id="award-node-0">
+              <div class="node-core award-core">
+                <div class="award-card-inner">
+                  <div class="award-card-year">2024</div>
+                  <div class="award-card-rank">Honorable Mention</div>
+                  <h3 class="award-card-title">ICPC Asia Dhaka Regional Contest</h3>
+                  <p class="award-card-desc">Honorable Mention at the prominent ICPC Asia Dhaka Regional Contest 2024.
+                  </p>
+                  <div class="award-card-signal">
+                    <span class="signal-dot"></span>
+                    <span class="signal-dot"></span>
+                    <span class="signal-dot"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="node-ring award-ring"></div>
+            </div>
+
+            <!-- ── ROW 2 ── -->
+            <div class="neural-node node-input gsap-neural-node" data-layer="0" data-index="1"
+              style="grid-column:1;grid-row:3;">
+              <div class="node-core"></div>
+              <div class="node-ring"></div>
+              <div class="node-pulse"></div>
+              <span class="node-label">Academic Excellence</span>
+            </div>
+
+            <div class="neural-node node-hidden gsap-neural-node" data-layer="1" data-index="1"
+              style="grid-column:2;grid-row:3;">
+              <div class="node-core"></div>
+              <div class="node-ring"></div>
+              <div class="node-pulse"></div>
+              <span class="node-label">Distinction</span>
+            </div>
+
+            <div class="neural-node node-award gsap-neural-node hover-target" data-layer="2" data-index="1"
+              style="grid-column:3;grid-row:3;" id="award-node-1">
+              <div class="node-core award-core">
+                <div class="award-card-inner">
+                  <div class="award-card-year">Batch Top</div>
+                  <div class="award-card-rank">Rank 1st</div>
+                  <h3 class="award-card-title">Highest CGPA 3.83</h3>
+                  <p class="award-card-desc">Secured 1st rank in my batch with the highest CGPA of 3.83.</p>
+                  <div class="award-card-signal">
+                    <span class="signal-dot"></span>
+                    <span class="signal-dot"></span>
+                    <span class="signal-dot"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="node-ring award-ring"></div>
+            </div>
+
+
+
+          </div><!-- /neural-grid -->
+        </div>
+      </section>
+      <!-- Academic Architecture / Education -->
+      <section class="education-section" id="education">
+        <div class="section-heading">
+          <h2 class="gsap-heading line-clip">Academic Base.</h2>
+        </div>
+
+        <div class="edu-timeline">
+          <div class="timeline-line"></div>
+
+          <div class="edu-item fade-up-text">
+            <div class="edu-node">
+              <div class="node-core"></div>
+              <div class="node-ring"></div>
+            </div>
+            <div class="edu-content spotlight-card js-tilt">
+              <div class="spotlight"></div>
+              <div class="bento-inner bento-gradient-2">
+                <div class="edu-year">2022 – 2025</div>
+                <h3 class="edu-degree">B.Sc. in Computer Science & Engineering</h3>
+                <p class="edu-institution">Brahmaputra International University</p>
+                <div class="tech-tags" style="margin-top:1.5rem;">
+                  <span class="tag">CGPA 3.83</span>
+                  <span class="tag">Rank 1st</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="edu-item fade-up-text">
+            <div class="edu-node">
+              <div class="node-core"></div>
+              <div class="node-ring"></div>
+            </div>
+            <div class="edu-content spotlight-card js-tilt">
+              <div class="spotlight"></div>
+              <div class="bento-inner bento-gradient-1">
+                <div class="edu-year">2017 – 2019</div>
+                <h3 class="edu-degree">Higher Secondary Certificate (Science)</h3>
+                <p class="edu-institution">Jamalpur Residential Model College</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Research Syntheses / Publications -->
+      <section class="publication-section" id="publications">
+        <div class="section-heading">
+          <h2 class="gsap-heading line-clip">Research Syntheses.</h2>
+        </div>
+
+        <div class="pub-list">
+          <!-- Paper 1 -->
+          <div class="pub-item spotlight-card js-tilt hover-target">
+            <div class="spotlight"></div>
+            <div class="bento-inner bento-gradient-1 layout-row pub-layout">
+              <div class="pub-info">
+                <div class="pub-meta">
+                  <span class="tag">IEEE CS BDC SYMPOSIUM</span>
+                  <span class="pub-date">2024</span>
+                </div>
+                <h3 class="pub-title">Incentivizing Recycling: A QR Code-Based Rewarding Reverse Vending Machine for Plastic and Metal Bottles</h3>
+                <p class="pub-authors"><span class="highlight-author">Faysal Al Mahmud</span>, Nafiul Hasan</p>
+                <p class="pub-desc">This research develops a user-friendly Reverse Vending Machine (RVM) for recycling plastic and metal bottles, offering QR code-based rewards to encourage recycling. The system aims to increase recycling rates and reduce waste, with plans to integrate AI for better object recognition.</p>
+              </div>
+              <div class="pub-action-wrap">
+                <a href="https://symposium24.ieeecsbdc.org/papers/91-incentivizing-recycling:-a-qr-code-based-rewarding-reverse-vending-machine-for-plastic-and-metal-bottles" target="_blank" class="cyber-link magnetic hover-target">
+                  <span class="btn-text">Extract Paper</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Ultra-Premium Extra Curricular Section -->
+      <section class="leadership-accordion" id="leadership">
+        <div class="section-heading">
+          <h2 class="gsap-heading line-clip">Extracurricular Impact.</h2>
+        </div>
+        <div class="acc-container">
+
+          <!-- Pillar 1 -->
+          <div class="acc-item hover-target js-acc fade-up-text">
+            <div class="acc-bg gradient-1"></div>
+            <div class="acc-index">01</div>
+            <div class="acc-title-vertical">President</div>
+
+            <div class="acc-content-full">
+              <div class="acc-year">Feb 2024 – Dec 2025</div>
+              <h3 class="acc-title">President</h3>
+              <p class="acc-org">BRIU Computer Club</p>
+              <div class="acc-desc">Led the university's largest technology club, orchestrating national-level
+                hackathons and cultivating a thriving ecosystem of young innovators.</div>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="acc-item hover-target js-acc fade-up-text">
+            <div class="acc-bg gradient-2"></div>
+            <div class="acc-index">02</div>
+            <div class="acc-title-vertical">Founding Gen. Sec.</div>
+
+            <div class="acc-content-full">
+              <div class="acc-year">Jan 2023 – Feb 2024</div>
+              <h3 class="acc-title">Founding Gen. Sec.</h3>
+              <p class="acc-org">BRIU Computer Club</p>
+              <div class="acc-desc">Pioneered the foundation of the club, accelerating community outreach strategy, and
+                initiating competitive programming bootcamps.</div>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="acc-item hover-target js-acc fade-up-text">
+            <div class="acc-bg gradient-1"></div>
+            <div class="acc-index">03</div>
+            <div class="acc-title-vertical">Campus Leader</div>
+
+            <div class="acc-content-full">
+              <div class="acc-year">Nov 2022 – Dec 2023</div>
+              <h3 class="acc-title">Campus Leader</h3>
+              <p class="acc-org">Applink by Banglalink</p>
+              <div class="acc-desc">Spearheaded the integration of Banglalink's digital ecosystem on campus, driving
+                massive user adoption.</div>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="acc-item hover-target js-acc fade-up-text">
+            <div class="acc-bg gradient-2"></div>
+            <div class="acc-index">04</div>
+            <div class="acc-title-vertical">District Head</div>
+
+            <div class="acc-content-full">
+              <div class="acc-year">Feb 2021 – Dec 2023</div>
+              <h3 class="acc-title">District Head</h3>
+              <p class="acc-org">Bangladesh Innovation Forum</p>
+              <div class="acc-desc">Directed regional seminars, mentoring students in STEM fields and fostering digital
+                literacy.</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Resumé Extraction Protocol -->
+      <section class="resume-extraction-section fade-up-text" id="resume">
+        <div class="resume-extraction-inner">
+          <a href="/Faysal Al Mahmud _ Resume.pdf" target="_blank"
+            class="cyber-resume-btn js-tilt magnetic hover-target">
+            <div class="cyber-resume-bg"></div>
+            <div class="cyber-resume-content">
+              <div class="cyber-resume-icon">
+                <svg viewBox="0 0 24 24" width="45" height="45" stroke="currentColor" stroke-width="1.2" fill="none"
+                  class="resume-doc-icon">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="cyber-resume-text">
+                <div class="cyber-tag"><span class="pulse-dot-small"></span> DATA RECORD READY</div>
+                <div class="cyber-title">EXTRACT CURRICULUM VITAE</div>
+                <div class="cyber-subtitle">Secure download sequence. Format: PDF.</div>
+              </div>
+              <div class="cyber-resume-action">
+                <span class="action-text">INITIATE</span>
+                <div class="action-arrow">
+                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <polyline points="19 12 12 19 5 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Giant Interactive Reveal Footer -->
+      <section class="contact" id="contact">
+        <div class="contact-inner">
+
+          <!-- Colossal Typography -->
+          <div class="colossal-wrapper fade-up-text">
+            <h2 class="colossal-text">ARCHITECT <br> <span class="outline-text">THE FUTURE.</span></h2>
+          </div>
+
+          <div class="contact-content-box fade-up-text">
+            <div class="contact-left">
+              <p class="contact-subtitle">Seeking high-impact roles to build the intelligence of tomorrow.</p>
+              <a href="mailto:faysalalmahmud78@gmail.com" class="mega-email-btn magnetic hover-target">
+                <span class="btn-text">faysalalmahmud78@gmail.com</span>
+                <div class="btn-arrow">
+                  <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
+
+              <div class="synced-socials-row fade-up-text">
+                <a href="https://github.com/faysalalmahmud" target="_blank"
+                  class="mega-email-btn minor-sync-btn magnetic hover-target">
+                  <span class="btn-text">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round" class="mega-social-icon">
+                      <path
+                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                      </path>
+                    </svg>
+                    GitHub Profile
+                  </span>
+                  <div class="btn-arrow minor-arrow">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </a>
+
+                <a href="https://www.linkedin.com/in/faysalalmahmud/" target="_blank"
+                  class="mega-email-btn minor-sync-btn magnetic hover-target">
+                  <span class="btn-text">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round" class="mega-social-icon linkedin-icon">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect x="2" y="9" width="4" height="12"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn Net
+                  </span>
+                  <div class="btn-arrow minor-arrow">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="footer-bottom fade-up-text">
+            <p class="copyright">© 2026 Faysal Al Mahmud.</p>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
