@@ -73,37 +73,43 @@ window.gsap.ticker.lagSmoothing(0);
 // -------------------------------------------------------------
 const cursorDot = document.getElementById('cursor-dot');
 const cursorOutline = document.getElementById('cursor-outline');
+
+// Only run the custom cursor on non-touch, pointer-fine devices (desktops)
+const isPointerFine = window.matchMedia('(pointer: fine) and (min-width: 769px)').matches;
+
 let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
 let outlineX = mouseX, outlineY = mouseY;
 
-window.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  cursorDot.style.left = `${mouseX}px`;
-  cursorDot.style.top = `${mouseY}px`;
-});
+if (isPointerFine) {
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursorDot.style.left = `${mouseX}px`;
+    cursorDot.style.top = `${mouseY}px`;
+  });
 
-function animateCursor() {
-  outlineX += (mouseX - outlineX) * 0.15;
-  outlineY += (mouseY - outlineY) * 0.15;
-  cursorOutline.style.left = `${outlineX}px`;
-  cursorOutline.style.top = `${outlineY}px`;
-  requestAnimationFrame(animateCursor);
+  function animateCursor() {
+    outlineX += (mouseX - outlineX) * 0.15;
+    outlineY += (mouseY - outlineY) * 0.15;
+    cursorOutline.style.left = `${outlineX}px`;
+    cursorOutline.style.top = `${outlineY}px`;
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Attach Hover events dynamically to constantly created elements if needed
+  document.addEventListener('mouseover', (e) => {
+    if (e.target.closest('.hover-target') || e.target.closest('a')) {
+      cursorOutline.classList.add('hover');
+      cursorDot.style.opacity = '0';
+    }
+  });
+  document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('.hover-target') || e.target.closest('a')) {
+      cursorOutline.classList.remove('hover');
+      cursorDot.style.opacity = '1';
+    }
+  });
 }
-animateCursor();
-
-// Attach Hover events dynamically to constantly created elements if needed
-document.addEventListener('mouseover', (e) => {
-  if (e.target.closest('.hover-target') || e.target.closest('a')) {
-    cursorOutline.classList.add('hover');
-    cursorDot.style.opacity = '0';
-  }
-});
-document.addEventListener('mouseout', (e) => {
-  if (e.target.closest('.hover-target') || e.target.closest('a')) {
-    cursorOutline.classList.remove('hover');
-    cursorDot.style.opacity = '1';
-  }
-});
 
 
 // -------------------------------------------------------------
