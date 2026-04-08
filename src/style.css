@@ -1435,10 +1435,17 @@ html.light .cyber-resume-icon { background: rgba(0, 130, 160, 0.05); border-colo
 @media (max-width: 768px) {
   .hero-grid { gap: 3rem; margin-top: 2rem; }
   .modern-profile-wrapper { max-width: 290px; }
-  .floating-badge { transform: translateZ(50px) scale(0.85); transform-origin: center; }
-  .modern-profile-wrapper:hover .floating-badge { transform: translateZ(80px) scale(0.9); }
-  .badge-tr { right: -20px; top: 20px; }
-  .badge-bl { left: -20px; bottom: 30px; }
+  /* Contain hero visual — rings overflow 130-150% card width causing right overflow */
+  .hero-visual { overflow: hidden; border-radius: 20px; }
+  /* Hide hologram rings on mobile — they overflow bounds */
+  .hologram-ring { display: none; }
+  /* Keep badges within card bounds */
+  .floating-badge { transform: scale(0.82); transform-origin: center; }
+  .badge-tr { right: 0px; top: 10px; }
+  .badge-bl { left: 0px; bottom: 20px; }
+  /* Ensure hero text centered */
+  .hero-content { text-align: center; }
+  .hero-actions { justify-content: center; }
   /* Capabilities: 2-column grid on mobile */
   .expertise { overflow: visible; padding-left: 5%; padding-right: 5%; }
   .bento-grid {
