@@ -496,12 +496,12 @@ html.light .floating-badge { background: rgba(255, 255, 255, 0.7); border: 1px s
 /* Infinite Marquee */
 .marquee-section {
   padding: 2rem 0; width: 100%; overflow: hidden; background: var(--marquee-bg); color: var(--marquee-text);
-  transform: rotate(-2deg) scale(1.05); transform-origin: center; margin: 10rem 0;
+  transform: rotate(-2deg) scale(1.05); transform-origin: center; margin: 8rem 0;
   transition: background 0.5s, color 0.5s;
 }
 .marquee-container {
   display: flex; white-space: nowrap; font-family: var(--font-display);
-  font-weight: 700; font-size: 3rem; letter-spacing: -0.02em;
+  font-weight: 700; font-size: clamp(1.5rem, 4vw, 3rem); letter-spacing: -0.02em;
 }
 .marquee-content {
   display: flex; animation: marquee 30s linear infinite; gap: 2rem;
@@ -1422,6 +1422,15 @@ html.light .cyber-resume-icon { background: rgba(0, 130, 160, 0.05); border-colo
   }
   .award-card-rank { font-size: 1.5rem; }
   .award-card-title { font-size: 1.15rem; }
+  /* pub-terminal: restore full 3-col layout on tablet */
+  .pub-terminal-item { grid-template-columns: 70px 1fr 240px; padding: 4rem 0; gap: 0 3rem; }
+  .pub-index-col { display: flex; }
+  .pub-main-col { gap: 1.4rem; }
+  .pub-abstract { display: block; }
+  .pub-action-col { display: flex; border-left: 1px solid var(--border-color); padding-left: 2rem; border-top: none; flex-direction: column; gap: 2rem; }
+  .pub-top-row { display: flex; flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+  .pub-scan-line { display: block; }
+  .pub-terminal-item::before { display: block; }
 }
 @media (max-width: 768px) {
   .hero-grid { gap: 3rem; margin-top: 2rem; }
@@ -1553,6 +1562,7 @@ html.light .cyber-resume-icon { background: rgba(0, 130, 160, 0.05); border-colo
   .cyber-resume-icon { width: 60px; height: 60px; }
   .cyber-resume-text { margin: 0; align-items: center; }
   .cyber-resume-action { width: 100%; justify-content: space-between; margin-top: 15px; background: rgba(255,255,255,0.02); padding: 10px 10px 10px 20px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.05); }
+  .marquee-section { margin: 4rem 0; }
   /* --- Projects --- */
   .project-item { padding: 4rem 0; gap: 2.5rem; }
   .project-desc { font-size: 1.1rem; }
@@ -1600,11 +1610,22 @@ html.light .cyber-resume-icon { background: rgba(0, 130, 160, 0.05); border-colo
   /* Marquee */
   .marquee-container { font-size: 2rem; }
 
+  /* Bento on very small screens — keep 2-col but tighter */
+  .bento-grid { gap: 10px; }
+  .bento-item { min-height: 180px; }
+  .bento-inner { padding: 1.2rem; min-height: 180px; }
+  .bento-content h3 { font-size: 1.4rem; margin-bottom: 0.8rem; }
+  .bento-content p { font-size: 0.9rem; }
+  .tag { padding: 8px 16px; font-size: 0.8rem; }
+  /* Marquee */
+  .marquee-section { margin: 3rem 0; }
   /* Resume */
   .cyber-title { font-size: 1.6rem; }
   .cyber-resume-btn { padding: 24px 18px; }
-
   /* Section headings */
   .section-heading h2 { font-size: clamp(2.2rem, 8vw, 3rem); }
   .section-heading { margin-bottom: 3rem; }
+  /* Projects */
+  .project-item { padding: 2.5rem 0; }
+  .project-desc { font-size: 1rem; }
 }
