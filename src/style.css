@@ -1443,7 +1443,10 @@ html.light .cyber-resume-icon { background: rgba(0, 130, 160, 0.05); border-colo
   .floating-badge { transform: scale(0.82); transform-origin: center; }
   .badge-tr { right: 0px; top: 10px; }
   .badge-bl { left: 0px; bottom: 20px; }
-  /* Ensure hero text centered */
+  /* Hero text — reduce font size so it fits the content area */
+  .hero-title { font-size: clamp(2.6rem, 10vw, 3.8rem); text-align: center; }
+  .hero-subtitle { max-width: 100%; font-size: clamp(1rem, 3.5vw, 1.3rem); text-align: center; }
+  .badge { display: block; margin-left: auto; margin-right: auto; width: fit-content; }
   .hero-content { text-align: center; }
   .hero-actions { justify-content: center; }
   /* Capabilities: 2-column grid on mobile */
